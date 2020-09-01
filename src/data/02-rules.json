@@ -1,0 +1,20 @@
+[
+	{
+		"_id": "_rule$seller",
+		"id": "sellerAccess",
+		"doc": "Allows a seller to Edit product",
+		"collection": "product",
+		"predicates": ["*"],
+		"fns": [["_fn/name", "true"]],
+		"ops": ["all"]
+	},
+	{
+		"_id": "_rule$customer",
+		"id": "customerAccess",
+		"doc": "Allows a customer to Edit product",
+		"collection": "product",
+		"predicates": ["*"],
+		"fns": [["_fn/name", "true"]],
+		"ops": ["query"]
+	}
+]

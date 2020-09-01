@@ -1,0 +1,35 @@
+[
+	{
+		"_id": "_collection",
+		"name": "product",
+		"doc": "individual product data for Admin"
+	},
+	{
+		"_id": "_predicate",
+		"name": "product/productName",
+		"type": "string",
+		"unique": true
+	},
+	{
+		"_id": "_predicate",
+		"name": "product/deliverables",
+		"type": "string"
+	},
+	{
+		"_id": "_predicate",
+		"name": "product/price",
+		"type": "int"
+	},
+	{
+		"_id": "_role?seller",
+		"id": "seller",
+		"rules": [["_rule/id", "sellerAccess"]]
+	},
+	{
+		"_id": "_role?customer",
+		"id": "customer",
+		"rules": [
+			["_rule/id", "customerAccess"]
+		]
+	}
+]
