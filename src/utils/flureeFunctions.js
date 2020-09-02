@@ -26,6 +26,25 @@ instance.interceptors.response.use(
   }
 );
 
+export function flureeQueryWithoutHeader(query){
+  const token = localStorage.getItem("token");
+  if (token) {
+    return new Promise((resolve, reject) => {
+      instance
+        .post("/query", query)
+        .then((res) => resolve(res))
+        .catch((err) => reject(err));
+    });
+  }
+  return new Promise((resolve, reject) => {
+    instance
+      .post(`/query`, query)
+      .then((res) => resolve(res))
+      .catch((err) => reject(err));
+  });
+  
+}
+
 /**
  * Helper function to handle Fluree queries
  * @param {Object} query Object containing FlureeQL query

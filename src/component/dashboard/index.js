@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Button, Col } from 'react-bootstrap';
 import jwt from 'jsonwebtoken';
-import { flureeQuery, flureeTransact } from "../../utils/flureeFunctions";
+import { flureeQuery, flureeTransact, flureeQueryWithoutHeader } from "../../utils/flureeFunctions";
 import { useHistory } from 'react-router';
 
 const Dashboard = () => {
@@ -47,17 +47,21 @@ const Dashboard = () => {
         const { sub } = jwt.decode(token);
         console.log('token subject', sub);
         const userQuery = {
-          "selectOne": [{ "_user/_auth": ["_id", "username"] }, { "roles": ["id"] }],
-          "from": ["_auth/id", "TfF8up9GKTX9dmaXseWBJqmhBa8LobJrkbs"],
-          "opts": {
-            "compact": true
-          }
+          selectOne: [
+            { "_user/_auth": ["_id", "username"] },
+            { roles: ["id"] },
+          ],
+          from: ["_auth/id", sub],
+          opts: {
+            compact: true,
+          },
         };
-        flureeQuery(userQuery)
-          .then((user) => {
-            console.log('user', user);
+
+        flureeQueryWithoutHeader(userQuery)
+        .then((user) => {
+          console.log('user', user);
             setUserData({
-              id: user.data.roles[0].id,
+              role: user.data.roles[0].id,
               username: user.data._user[0].username,
               _id: user.data._user[0]._id,
             });
@@ -144,7 +148,7 @@ const Dashboard = () => {
             })}
         </tbody>
       </table>
-      {userData.role === 'customer' ? (
+      {userData.role === "customer" ? (
         <div>this is customer</div>
       ) : (
           <div>this is selller</div>
