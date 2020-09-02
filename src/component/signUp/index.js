@@ -41,7 +41,7 @@ const SignUp = () => {
                         Password
 					</Form.Label>
                     <Col>
-                        <Form.Control name="password" onChange={changeHandler} type="text" placeholder="Password" />
+                        <Form.Control name="password" onChange={changeHandler} type="password" placeholder="Password" />
                     </Col>
                 </Form.Row>
                 <Form.Row>
