@@ -83,9 +83,15 @@ export function registerFlureeUser(user) {
     .post("/pw/generate", user)
     .then((res) => {
       const token = res.data;
-      return token;
+      return  {
+        status: true,
+        token: token
+      };
     })
-    .catch((err) => err);
+    .catch((err) => {
+      alert(err.response.data.message);
+      throw err;
+    });
 }
 
 /**
@@ -105,6 +111,7 @@ export function loginFlureeUser(user) {
       }
     })
     .catch((err) => {
+      alert(err.response.data.message);
       throw err;
     });
 }

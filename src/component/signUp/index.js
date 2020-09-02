@@ -8,7 +8,7 @@ const SignUp = () => {
     const [form, setForm] = useState({
         email: "",
         password: "",
-        role: ''
+        role: 'seller'
     });
     const changeHandler = (e) => {
         setForm({
@@ -19,7 +19,7 @@ const SignUp = () => {
     const submitHandler = async (e) => {
         e.preventDefault();
         const resp = await registerFlureeUser({ user: form.email, password: form.password, "create-user?": true, roles: [["_role/id", form.role]], expire: 999999999})
-        if (resp) {
+        if (resp && resp.status ) {
             alert('SignUp Success')
             history.push('/login');
         }
