@@ -5,6 +5,24 @@
 		"doc": "individual product data for Admin"
 	},
 	{
+		"_id": "_collection",
+		"name": "category",
+		"doc": "individual category data for Admin"
+	},
+	{
+		"_id": "_predicate",
+		"name": "category/categoryName",
+		"type": "string",
+		"unique": true
+	},
+	{
+		"_id": "_predicate",
+		"name": "product/category",
+		"type": "ref",
+		"multi": true,
+		"restrictCollection": "category"
+	},
+	{
 		"_id": "_predicate",
 		"name": "product/productName",
 		"type": "string",
@@ -23,13 +41,17 @@
 	{
 		"_id": "_role?seller",
 		"id": "seller",
-		"rules": [["_rule/id", "sellerAccess"]]
+		"rules": [
+			["_rule/id", "sellerAccess"],
+			["_rule/id", "sellerCategory"]
+		]
 	},
 	{
 		"_id": "_role?customer",
 		"id": "customer",
 		"rules": [
-			["_rule/id", "customerAccess"]
+			["_rule/id", "customerAccess"],
+			["_rule/id", "customerCategory"]
 		]
 	}
 ]

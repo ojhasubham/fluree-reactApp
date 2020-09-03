@@ -16,5 +16,23 @@
 		"predicates": ["*"],
 		"fns": [["_fn/name", "true"]],
 		"ops": ["query"]
+	},
+	{
+		"_id": "_rule$customerCategory",
+		"id": "customerCategory",
+		"doc": "Allows a customer to Edit Category",
+		"collection": "category",
+		"predicates": ["*"],
+		"fns": [["_fn/name", "true"]],
+		"ops": ["query"]
+	},
+	{
+		"_id": "_rule$sellerCategory",
+		"id": "sellerCategory",
+		"doc": "Allows a seller to Edit Category",
+		"collection": "category",
+		"predicates": ["*"],
+		"fns": [["_fn/name", "true"]],
+		"ops": ["all"]
 	}
 ]
